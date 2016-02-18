@@ -22,6 +22,12 @@ router.post("/notes", note.create);
 //route for showing list of notes -> index action
 router.get("/notes", note.index);
 
+//render 'edit note' template
+router.get("/notes/:id/edit", note.edit);
+
+//update a note
+router.put("/notes/:id", note.update)
+
 
 
 module.exports = router;

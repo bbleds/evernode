@@ -53,3 +53,25 @@ module.exports.destroy = (req, res) =>
 	})
 
 }
+
+// method for deleting notes
+module.exports.edit = (req, res) =>
+{
+	Note.findById(req.params.id, (err, note) =>
+	{
+		if (err) throw err
+			console.log(note);
+		res.render("edit-note", {"note":note});
+
+	})
+}
+
+// method for updating notes
+module.exports.update = (req, res) =>
+{
+	Note.findByIdAndUpdate(req.params.id, {"title": req.params.title, "text":req.params.text}, () =>
+	{
+		res.redirect(`/notes/${req.params.id}`);
+
+	})
+}
