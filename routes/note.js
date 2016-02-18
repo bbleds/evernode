@@ -5,35 +5,20 @@
 const express = require("express");
 const router = express.Router();
 
-// Note model
-const Note = require("../models/Note");
+const note = require("../controllers/note")
 
 //route for getting create note form
-router.get("/notes/new", (req, res) =>
-{
-	res.render("new-note");
-})
+router.get("/notes/new", note.newNote);
 
 //route for viewing individual note
-router.get("/notes/:id", (req, res) =>
-{
-	Note.findById(req.params.id, (err, note) =>
-	{
-		if (err) throw err
-		res.render("show-note", {note: note});
-	})
-})
+router.get("/notes/:id", note.show);
+
+//route for deleting notes
+router.delete("/notes/:id", note.destroy);
 
 //route for making new notes
-router.post("/notes", (req, res) =>
-{
-	Note.create(req.body, (err, note) =>
-	{
-		if (err) throw err
-		console.log(note);
-		res.redirect(`/notes/${note._id}`)
-	})
-})
+router.post("/notes", note.create);
+
 
 
 module.exports = router;

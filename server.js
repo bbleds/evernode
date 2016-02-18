@@ -4,6 +4,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const methodOverride = require('method-override');
+
+// configuration
 const PORT = process.env.PORT || 3000;
 const MONGODB_URL = "mongodb://localhost:27017/evernode";
 const note = require("./routes/note")
@@ -15,6 +18,9 @@ app.use(bodyParser.urlencoded(
 	{
 		extended: false
 	}));
+
+// use method override to accept post requests and convert to delete request when removing notes
+app.use(methodOverride('_method'));
 
 // use jade as view engine
 app.set("view engine", "jade");
