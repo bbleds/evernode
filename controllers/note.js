@@ -4,6 +4,18 @@
 // note model
 const Note = require("../models/Note");
 
+// method for showing a list of notes
+module.exports.index = (req, res) =>
+{
+	Note.find({}, (err, notes) =>
+	{
+		if (err) throw err
+			console.log(notes);
+		res.render("notes-index", { "notes": notes });
+
+	})
+}
+
 // method for new note form
 module.exports.newNote = (req, res) =>
 {
@@ -37,7 +49,7 @@ module.exports.destroy = (req, res) =>
 	Note.findByIdAndRemove(req.params.id, (err) =>
 	{
 		if (err) throw err
-		res.redirect("/");
+		res.redirect("/notes");
 	})
 
 }

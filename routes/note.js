@@ -19,6 +19,9 @@ router.delete("/notes/:id", note.destroy);
 //route for making new notes
 router.post("/notes", note.create);
 
+//route for showing list of notes -> index action
+router.get("/notes", note.index);
+
 
 
 module.exports = router;
