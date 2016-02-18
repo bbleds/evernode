@@ -69,7 +69,7 @@ module.exports.edit = (req, res) =>
 // method for updating notes
 module.exports.update = (req, res) =>
 {
-	Note.findByIdAndUpdate(req.params.id, {"title": req.params.title, "text":req.params.text}, () =>
+	Note.findByIdAndUpdate(req.params.id, {title: req.body.title, text :req.body.text}, () =>
 	{
 		res.redirect(`/notes/${req.params.id}`);
 
