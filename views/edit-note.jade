@@ -1,6 +1,6 @@
 h1 Edit page
 
-form(method="POST", action="/notes/#{note._id}?_method=PUT")
+form(method="POST", action="/notes/#{note._id}?_method=PATCH")
 	.input-group
 		label(for="title") Title
 		input#title.form-control(type="text", name="title", value="#{note.title}")

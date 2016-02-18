@@ -26,7 +26,7 @@ router.get("/notes", note.index);
 router.get("/notes/:id/edit", note.edit);
 
 //update a note
-router.put("/notes/:id", note.update)
+router.patch("/notes/:id", note.update)
 
 
 
