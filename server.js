@@ -5,14 +5,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
-const MONGODB_URL = "mongodb://localhost:27017/evernode"
+const MONGODB_URL = "mongodb://localhost:27017/evernode";
+const note = require("./routes/note")
 
 // init app
 const app = express();
-
-//models
-const Note = require("./models/Note")
-
 //configure body parser
 app.use(bodyParser.urlencoded(
 	{
@@ -27,32 +24,7 @@ app.get("/", (req, res) =>
 	res.send("<h1>Welcome to mah pagggggeeee</h1>");
 })
 
-//route for getting create note form
-app.get("/notes/new", (req, res) =>
-{
-	res.render("new-note");
-})
-
-//route for viewing individual note
-app.get("/notes/:id", (req, res) =>
-{
-	Note.findById(req.params.id, (err, note) =>
-	{
-		if (err) throw err
-		res.render("show-note", {note: note});
-	})
-})
-
-//route for making new notes
-app.post("/notes", (req, res) =>
-{
-	Note.create(req.body, (err, note) =>
-	{
-		if (err) throw err
-		console.log(note);
-		res.redirect(`/notes/${note._id}`)
-	})
-})
+app.use(note);
 
 //connect to mongo
 mongoose.connect(MONGODB_URL);
