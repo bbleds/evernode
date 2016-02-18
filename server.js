@@ -5,6 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
+const logger = require("./lib/logger")
 
 // configuration
 const PORT = process.env.PORT || 3000;
@@ -29,6 +30,8 @@ app.get("/", (req, res) =>
 {
 	res.send("<h1>Welcome to mah pagggggeeee</h1>");
 })
+
+app.use(logger);
 
 app.use(note);
 
