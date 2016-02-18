@@ -10,10 +10,8 @@ const MONGODB_URL = "mongodb://localhost:27017/evernode"
 // init app
 const app = express();
 
-const Note = mongoose.model('Notes', mongoose.Schema({
-	title : String,
-	text : String
-}));
+//models
+const Note = require("./models/Note")
 
 //configure body parser
 app.use(bodyParser.urlencoded(
