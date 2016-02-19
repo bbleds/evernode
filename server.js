@@ -11,6 +11,7 @@ const logger = require("./lib/logger")
 const PORT = process.env.PORT || 3000;
 const MONGODB_URL = "mongodb://localhost:27017/evernode";
 const note = require("./routes/note")
+const categories = require("./routes/category");
 
 // init app
 const app = express();
@@ -34,6 +35,7 @@ app.get("/", (req, res) =>
 app.use(logger);
 
 app.use(note);
+app.use(categories);
 
 //connect to mongo
 mongoose.connect(MONGODB_URL);
