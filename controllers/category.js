@@ -28,3 +28,8 @@ module.exports.newCategory = (req, res) =>
 {
  res.render("category-new");
 };
+
+module.exports.show = (req, res) =>
+{
+ res.send("ahhhhhhhhhhhhhh");
+};
