@@ -9,22 +9,22 @@ module.exports.index = (req, res) =>
   {
     console.log(categories);
     res.render("category-index", {"categories": categories});
-  })
+  });
 
-}
+};
 
-// creat category action
+// create category action
 module.exports.create = (req, res) =>
 {
   Category.create(req.body, (err) =>
   {
-    if(err) throw err
+    if(err) throw err;
     res.redirect("/categories");
-  })
-}
+  });
+};
 
 // send create form action
 module.exports.newCategory = (req, res) =>
 {
  res.render("category-new");
-}
+};
