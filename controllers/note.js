@@ -4,6 +4,9 @@
 // note model
 const Note = require("../models/Note");
 
+// Category model
+const Category = require("../models/category");
+
 // method for showing a list of notes
 module.exports.index = (req, res) =>
 {
@@ -19,7 +22,12 @@ module.exports.index = (req, res) =>
 // method for new note form
 module.exports.newNote = (req, res) =>
 {
-	res.render("new-note");
+	Category.find({}, (err, categories) =>
+	{
+		console.log(categories);
+		if(err) throw err;
+		res.render("new-note", {"categories" : categories});
+	});
 };
 
 // method for viewing individual note

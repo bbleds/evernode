@@ -5,7 +5,7 @@
 const express = require("express");
 const router = express.Router();
 
-const note = require("../controllers/note")
+const note = require("../controllers/note");
 
 //route for getting create note form
 router.get("/notes/new", note.newNote);
@@ -26,7 +26,7 @@ router.get("/notes", note.index);
 router.get("/notes/:id/edit", note.edit);
 
 //update a note
-router.patch("/notes/:id", note.update)
+router.patch("/notes/:id", note.update);
 
 
 
