@@ -1,20 +1,30 @@
 'use strict';
-// controller for actions for a specific note
+
+const Category = require('../models/category');
 
 // list categories action
 module.exports.index = (req, res) =>
 {
- res.send("category-index")
+  Category.find({}, (err, categories) =>
+  {
+    console.log(categories);
+    res.render("category-index", {"categories": categories});
+  })
+
 }
 
 // creat category action
 module.exports.create = (req, res) =>
 {
- res.send("bruh")
+  Category.create(req.body, (err) =>
+  {
+    if(err) throw err
+    res.redirect("/categories");
+  })
 }
 
 // send create form action
 module.exports.newCategory = (req, res) =>
 {
- res.render("category-new")
+ res.render("category-new");
 }
